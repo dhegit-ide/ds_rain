@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from sklearn.feature_selection import mutual_info_regression
 
 def render(df):    
     target_column = st.session_state.get('target_column', None)
@@ -11,7 +12,6 @@ def render(df):
             scores = df.corr(method=corr_method.lower(), numeric_only=True)[target_column].drop(target_column)
             scores_filtered = scores.sort_values(ascending=False)
         else:  # Mutual Information
-            from sklearn.feature_selection import mutual_info_regression
             X = df.drop(columns=[target_column, "ds", "unique_id"], errors="ignore")
             y = df[target_column]
             mi_scores = mutual_info_regression(X, y, random_state=17)

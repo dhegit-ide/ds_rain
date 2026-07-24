@@ -8,8 +8,8 @@ st.set_page_config(
 
 pg = st.navigation(
     [
-        st.Page("pages/tab1_eda.py", title="Overview Dataset", icon=":material/dashboard:", default=True),
-        st.Page("pages/tab2_forecast.py", title="Forecasting", icon=":material/bar_chart:"),
+        st.Page("app_pages/tab1_eda.py", title="Overview Dataset", icon=":material/dashboard:", default=True),
+        st.Page("app_pages/tab2_forecast.py", title="Forecasting", icon=":material/bar_chart:"),
     ]
 )
 pg.run()

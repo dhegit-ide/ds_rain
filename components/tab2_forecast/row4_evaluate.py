@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
-from utilsforecast.losses import mae, rmse, mse, mape
+from utilsforecast.losses import mae, rmse, mse
 from utilsforecast.evaluation import evaluate
 from utils.data_loader import r2
 
@@ -13,7 +13,7 @@ def render(cv_df):
     st.markdown("##### **Dataset Evaluasi**")
     metrics_df = evaluate(
         cv_df.drop(columns='cutoff'), 
-        metrics=[mae,rmse,mse,mape,r2]
+        metrics=[mae,rmse,mse,r2]
     )
     st.dataframe(metrics_df.round(3))
 
@@ -32,7 +32,6 @@ def render(cv_df):
     # ubah nama kolom biar lebih rapi
     eval_table = eval_table.rename(columns={
         'mae': 'MAE',
-        'mape': 'MAPE (%)',
         'mse': 'MSE',
         'rmse': 'RMSE',
         'r2': 'R²'
@@ -44,7 +43,7 @@ def render(cv_df):
         best_counts = {}
 
         for metric in eval_table.columns:
-            if metric in ["MAE","MAPE (%)","MSE","RMSE"]:
+            if metric in ["MAE","MSE","RMSE"]:
                 best_model = eval_table[metric].idxmin()
                 best_score = eval_table[metric].min()
                 worst_model = eval_table[metric].idxmax()

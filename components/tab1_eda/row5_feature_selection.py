@@ -22,6 +22,7 @@ def render(df):
         with col1:
             with st.container(border=True, height=450):
                 st.subheader(f":material/table: Tabel Korelasi {corr_method}")
+                st.caption(":material/info: Gunakan kontrol di sidebar untuk memilih Metode Korelasi")
                 score_df = pd.DataFrame({
                     "Fitur": scores_filtered.index,
                     "Skor": scores_filtered.values

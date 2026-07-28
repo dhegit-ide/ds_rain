@@ -49,6 +49,15 @@ with st.sidebar:
             key="selected_unique_id",
         )
 
+        # Pilih prediksi
+        pred_cols = [c for c in cv_df.columns if c not in ['unique_id','ds','cutoff','y']]
+        st.selectbox(
+            "Pilih Prediksi",
+            options=pred_cols,
+            key="selected_pred",
+        )
+
+
 if cv_df is not None:
     row1_card_cv.render(cv_df)
     row2_preview_cv.render(cv_df)

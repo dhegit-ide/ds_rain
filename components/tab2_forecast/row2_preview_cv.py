@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 from utilsforecast.plotting import plot_series
-from utilsforecast.losses import smape
 
 def render(cv_df):
     if not pd.api.types.is_datetime64_any_dtype(cv_df['ds']):
@@ -19,18 +18,13 @@ def render(cv_df):
             st.warning(":material/warning: Tidak ada kolom hasil prediksi model ditemukan.")
             return
 
-        for col in pred_cols:
-            st.markdown(f"**Model Forecast: {col}**")
-            try:
-                fig = plot_series(
+        fig = plot_series(
                     df=cv_df[['unique_id','ds','y']],
-                    forecasts_df=cv_df[['unique_id','ds',col]],
+                    forecasts_df=cv_df.drop(columns=['cutoff', 'y']),
                     ids=[selected_unique_id],
                     engine='plotly'
-                )
-                fig.update_layout(showlegend=True)
-                st.plotly_chart(fig, use_container_width=True)
-            except Exception as e:
-                st.warning(f":material/warning: Error visualisasi series untuk {col}: {e}")
-
+        )
+        fig.update_layout(showlegend=True)
+        st.plotly_chart(fig, use_container_width=True)
+    
     st.divider()

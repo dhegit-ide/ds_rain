@@ -9,6 +9,7 @@ def render(df):
 
     with st.container(border=True):
         st.subheader(":material/show_chart: Visualisasi Series")
+        st.caption(":material/info: Gunakan kontrol di sidebar untuk memilih Target Kolom")
         try:
             fig = plot_series(df, target_col=target_column, engine='plotly')
             fig.update_layout(showlegend=False)

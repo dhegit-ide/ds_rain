@@ -7,6 +7,7 @@ def render(cv_df):
     
     st.subheader(":material/description: Statistik Cross Validation")
     st.markdown(f"##### **{selected_unique_id}**")
+    st.caption(":material/info: Gunakan kontrol di sidebar untuk memilih Unique ID")
 
     df_sel = cv_df[cv_df['unique_id'] == selected_unique_id]
     forecast_cols = [c for c in df_sel.columns if c not in ['unique_id','ds','cutoff']]
@@ -31,6 +32,7 @@ def render(cv_df):
     with st.container(border=True):    
         st.subheader(":material/candlestick_chart: Boxplot Distribusi")
         st.markdown(f"##### **{selected_unique_id}**")
+        st.caption(":material/info: Gunakan kontrol di sidebar untuk memilih Unique ID")
         df_long = df_sel.melt(
             id_vars=['ds','unique_id','cutoff'],
             value_vars=forecast_cols,

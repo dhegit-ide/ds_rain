@@ -1,16 +1,16 @@
 import streamlit as st
-import pandas as pd
 
 def render(cv_df):
     st.divider()
+    st.subheader(":material/dashboard: Konfigurasi Eksperimen")
 
     n_unique_ids = cv_df['unique_id'].nunique()
-    horizon = cv_df.groupby(['unique_id','cutoff']).size().mean().round(0)  # rata-rata panjang forecast per cutoff
+    horizon = cv_df.groupby(['unique_id','cutoff']).size().mean().round(0)
     n_folds = cv_df['cutoff'].nunique()
     pred_cols = [c for c in cv_df.columns if c not in ['unique_id','ds','cutoff','y']]
 
     if len(pred_cols) == 1: model_info = pred_cols[0]
-    else: model_info = f"{len(pred_cols)} models"
+    else: model_info = f"{len(pred_cols)}"
 
     col1, col2, col3, col4 = st.columns(4)    
     with col1:

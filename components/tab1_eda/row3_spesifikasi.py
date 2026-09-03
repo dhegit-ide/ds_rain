@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 def render(df):
-    st.subheader(":material/data_table: Informasi Dataset")
+    st.subheader(":material/data_table: Spesifikasi dan Kelengkapan Fitur")
     
     st.dataframe(
         pd.DataFrame({

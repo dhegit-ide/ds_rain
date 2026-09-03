@@ -1,0 +1,28 @@
+import streamlit as st
+import pandas as pd
+from utilsforecast.plotting import plot_series
+
+def render(cv_df):
+    st.subheader(":material/show_chart: Visualisasi Pola Prediksi vs Aktual")
+
+    if not pd.api.types.is_datetime64_any_dtype(cv_df['ds']):
+        cv_df['ds'] = pd.to_datetime(cv_df['ds'], errors='coerce')
+    selected_unique_id = st.session_state['selected_unique_id']
+
+    with st.container(border=True):
+        st.caption(f":green-badge[Unique ID: {selected_unique_id}]")
+        st.caption(":material/info: Gunakan kontrol di sidebar untuk memilih Unique ID")
+        pred_cols = [c for c in cv_df.columns if c not in ['unique_id','ds','cutoff','y']]
+        if len(pred_cols) == 0:
+            st.warning(":material/warning: Tidak ada kolom hasil prediksi model ditemukan.")
+            return
+        fig = plot_series(
+                    df=cv_df[['unique_id','ds','y']],
+                    forecasts_df=cv_df.drop(columns=['cutoff', 'y']),
+                    ids=[selected_unique_id],
+                    engine='plotly'
+        )
+        fig.update_layout(showlegend=True)
+        st.plotly_chart(fig, use_container_width=True)
+
+    st.divider()

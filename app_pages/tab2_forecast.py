@@ -3,12 +3,16 @@ import pandas as pd
 from components.tab2_forecast import (
     row1_card_cv,
     row2_preview_cv,
-    row3_describe_cv,
-    row4_evaluate
+    row3_statistik,
+    row4_boxplot,
+    row5_prediksi_vs_aktual,
+    row6_tabel_evaluasi,
+    row7_metrik_global,
+    row8_metrik_per_uniqueID,
 )
 from utils.data_loader import validate_cv_df
 
-st.title(":material/bar_chart: Forecasting")
+st.title(":material/bar_chart: Forecast")
 st.info("Gunakan kontrol di sidebar untuk memilih dataset dan pengaturan.")
 
 cv_df = None
@@ -33,7 +37,7 @@ with st.sidebar:
                 st.session_state['cv_loaded'] = True
     else:
         try:
-            cv_df = pd.read_csv("data/cv_df.csv")
+            cv_df = pd.read_csv("data/cv_df_nhits.csv")
             st.info("Menggunakan hasil cross validation contoh bawaan.")
             st.session_state['cv_df'] = cv_df
             st.session_state['cv_loaded'] = True
@@ -61,7 +65,9 @@ with st.sidebar:
 if cv_df is not None:
     row1_card_cv.render(cv_df)
     row2_preview_cv.render(cv_df)
-    row3_describe_cv.render(cv_df)
-    row4_evaluate.render(cv_df)
-
-    
+    row3_statistik.render(cv_df)
+    row4_boxplot.render(cv_df)
+    row5_prediksi_vs_aktual.render(cv_df)
+    row6_tabel_evaluasi.render(cv_df)
+    row7_metrik_global.render(cv_df)
+    row8_metrik_per_uniqueID.render(cv_df)

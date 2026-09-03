@@ -5,7 +5,7 @@ from sklearn.feature_selection import mutual_info_regression
 
 def render(df):    
     target_column = st.session_state.get('target_column', None)
-    corr_method = st.session_state.get('corr_method', 'pearson')
+    corr_method = st.session_state.get('corr_method', 'Spearman')
     if df is not None and target_column:
          # hitung skor sesuai metode
         if corr_method in ["Pearson", "Spearman", "Kendall"]:
@@ -47,6 +47,4 @@ def render(df):
                 st.plotly_chart(fig, use_container_width=True)
     else:
         st.warning(":material/warning: Target kolom belum dipilih atau data belum tersedia.")
-
-    st.divider()
            

@@ -1,11 +1,14 @@
 import streamlit as st
 import pandas as pd
 from components.tab1_eda import (
-    row1_card,
-    row2_preview_dataset,
-    row3_info_dataset,
-    row4_describe_dataset,
-    row5_feature_selection,
+    row1_card_info,
+    row2_preview_data,
+    row3_spesifikasi,
+    row4_statistik,
+    row5_boxplot,
+    row6_grafik_series,
+    row7_grafik_pola_musiman,
+    row8_korelasi_fitur,
 )
 from utils.data_loader import validate_csv, get_numeric_columns
 
@@ -34,15 +37,15 @@ with st.sidebar:
                 st.session_state['data_loaded'] = True
     else:
         try:
-            df = pd.read_csv("data/bone_wajo_pinrang_sidrap_encoded.csv")
+            df = pd.read_csv("data/df_30_tahun.csv")
             st.info("Menggunakan dataset contoh bawaan.")
             st.session_state['df_raw'] = df
             st.session_state['data_loaded'] = True
         except FileNotFoundError:
             st.error("File contoh dataset tidak ditemukan di folder data/")
 
-    # Target kolom
     if df is not None:
+        # Target kolom
         numeric_cols = get_numeric_columns(df)
         if numeric_cols:
             st.selectbox(
@@ -53,17 +56,28 @@ with st.sidebar:
         else:
             st.warning(":material/warning: Tidak ada kolom numerik!")
             st.session_state['target_column'] = None
+        
+        # Pilih unique_id
+        unique_ids = df['unique_id'].unique()
+        st.selectbox(
+            "Pilih Unique ID",
+            options=unique_ids,
+            key="selected_unique_id",
+        )
 
-    # Seleksi fitur
-    st.selectbox(
-        "Pilih Metode Korelasi",
-        options=["Pearson", "Spearman", "Kendall", "Mutual Information"],
-        key="corr_method",
-    )
+        # Seleksi fitur
+        st.selectbox(
+            "Pilih Metode Korelasi",
+            options=["Spearman", "Kendall", "Pearson", "Mutual Information"],
+            key="corr_method",
+        )
 
 if df is not None:
-    row1_card.render(df)
-    row2_preview_dataset.render(df)
-    row3_info_dataset.render(df)
-    row4_describe_dataset.render(df)
-    row5_feature_selection.render(df)
+    row1_card_info.render(df)
+    row2_preview_data.render(df)
+    row3_spesifikasi.render(df)
+    row4_statistik.render(df)
+    row5_boxplot.render(df)
+    row6_grafik_series.render(df)
+    row7_grafik_pola_musiman.render(df)
+    row8_korelasi_fitur.render(df)

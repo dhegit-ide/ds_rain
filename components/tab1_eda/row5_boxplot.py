@@ -2,17 +2,10 @@ import streamlit as st
 import plotly.express as px
 
 def render(df):
-    st.subheader(":material/description: Statistik Deskriptif")
+    st.subheader(":material/candlestick_chart: Visualisasi Sebaran dan Pencilan Data (Boxplot)")
     target_column = st.session_state.get('target_column', None)
-    if target_column:
-        wilayah_stats = df.groupby('unique_id').agg({target_column: ['count', 'mean', 'std', 'min', 'max', 'sum']}).round(2)
-        wilayah_stats.columns = ['Jumlah Data', 'Rata-rata', 'Std. Dev.', 'Minimum', 'Maksimum', 'Total']
-        wilayah_stats = wilayah_stats.sort_values('Total', ascending=False)
-
-        st.dataframe(wilayah_stats.reset_index())
 
     with st.container(border=True):    
-        st.subheader(":material/candlestick_chart: Boxplot Distribusi")
         fig_box = px.box(
             df,
             x="unique_id",

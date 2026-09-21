@@ -7,8 +7,8 @@ from components.tab2_forecast import (
 )
 from utils.data_loader import validate_cv_df
 
-st.title(":material/bar_chart: Forecast")
-st.info("Gunakan kontrol di sidebar untuk memilih dataset dan pengaturan.")
+st.title(":material/bar_chart: Forecast", help="Halaman ini menyajikan evaluasi hasil peramalan (*forecasting*) berdasarkan performa model pada data uji (*test set*)")
+st.info("Petunjuk: Buka sidebar di sebelah kiri untuk mengganti dataset atau memilih Unique ID")
 
 cv_df = None
 

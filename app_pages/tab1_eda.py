@@ -13,8 +13,8 @@ from components.tab1_eda import (
 from utils.data_loader import validate_csv, get_numeric_columns
 from utils.sliding_window import init_sliding_window_state, on_window_change, sync_date_widgets, on_start_date_change, on_end_date_change
 
-st.title(":material/tile_small: Overview Dataset")
-st.info("Gunakan kontrol di sidebar untuk memilih dataset dan pengaturan.")
+st.title(":material/tile_small: Overview Dataset", help="Halaman ini menyajikan profil, kualitas data, serta analisis eksploratif (EDA) awal untuk seluruh variabel sebelum masuk ke tahap peramalan (*forecasting*)")
+st.info("Petunjuk: Buka sidebar di sebelah kiri untuk mengganti dataset, target variabel, Unique ID, atau rentang waktu.")
 
 df = None
 

@@ -9,9 +9,10 @@ def render(cv_df):
         cv_df['ds'] = pd.to_datetime(cv_df['ds'], errors='coerce')
     selected_unique_id = st.session_state['selected_unique_id']
 
+    st.caption(f":green-badge[Unique ID: {selected_unique_id}]")
+    st.caption(":material/info: Gunakan kontrol di sidebar untuk memilih Unique ID")
+
     with st.container(border=True):
-        st.caption(f":green-badge[Unique ID: {selected_unique_id}]")
-        st.caption(":material/info: Gunakan kontrol di sidebar untuk memilih Unique ID")
         pred_cols = [c for c in cv_df.columns if c not in ['unique_id','ds','cutoff','y']]
         if len(pred_cols) == 0:
             st.warning(":material/warning: Tidak ada kolom hasil prediksi model ditemukan.")
@@ -24,5 +25,3 @@ def render(cv_df):
         )
         fig.update_layout(showlegend=True)
         st.plotly_chart(fig, use_container_width=True)
-
-    st.divider()

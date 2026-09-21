@@ -1,14 +1,9 @@
 import streamlit as st
 import pandas as pd
 from components.tab2_forecast import (
-    row1_card_cv,
-    row2_preview_cv,
-    row3_statistik,
-    row4_boxplot,
-    row5_prediksi_vs_aktual,
-    row6_tabel_evaluasi,
-    row7_metrik_global,
-    row8_metrik_per_uniqueID,
+    row1_dataset,
+    row2_prediksi_vs_aktual,
+    row3_metric_card,
 )
 from utils.data_loader import validate_cv_df
 
@@ -22,7 +17,11 @@ with st.sidebar:
     st.markdown("### :material/tune: Settings")
 
     # Sumber data
-    data_source = st.radio("Pilih sumber dataset cross validation", ["Upload CSV", "Gunakan contoh dataset"])
+    data_source = st.radio(
+        "Pilih sumber dataset cross validation", 
+        ["Upload CSV", "Gunakan contoh dataset"], 
+        index=1
+    )
     if data_source == "Upload CSV":
         uploaded_file = st.file_uploader("Upload file CSV", type=["csv"])
         if uploaded_file:
@@ -53,21 +52,9 @@ with st.sidebar:
             key="selected_unique_id",
         )
 
-        # Pilih prediksi
-        pred_cols = [c for c in cv_df.columns if c not in ['unique_id','ds','cutoff','y']]
-        st.selectbox(
-            "Pilih Prediksi",
-            options=pred_cols,
-            key="selected_pred",
-        )
-
 
 if cv_df is not None:
-    row1_card_cv.render(cv_df)
-    row2_preview_cv.render(cv_df)
-    row3_statistik.render(cv_df)
-    row4_boxplot.render(cv_df)
-    row5_prediksi_vs_aktual.render(cv_df)
-    row6_tabel_evaluasi.render(cv_df)
-    row7_metrik_global.render(cv_df)
-    row8_metrik_per_uniqueID.render(cv_df)
+    row1_dataset.render(cv_df)
+    row2_prediksi_vs_aktual.render(cv_df)
+    row3_metric_card.render(cv_df)
+    

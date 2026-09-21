@@ -1,7 +1,0 @@
-import streamlit as st
-
-def render(cv_df):
-    st.subheader(":material/table_view: Preview Dataset")
-    st.dataframe(cv_df)    
-    
-    st.divider()

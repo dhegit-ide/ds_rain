@@ -7,14 +7,14 @@ from components.tab2_forecast import (
 )
 from utils.data_loader import validate_cv_df
 
-st.title(":material/bar_chart: Forecast", help="Halaman ini menyajikan evaluasi hasil peramalan (*forecasting*) berdasarkan performa model pada data uji (*test set*)")
-st.info("Petunjuk: Buka sidebar di sebelah kiri untuk mengganti dataset atau memilih Unique ID")
+st.title(":material/bar_chart: Forecast", help="Atur pilihan dataset dan Unique ID melalui kontrol di sidebar")
+st.write("Halaman ini menyajikan evaluasi hasil peramalan (*forecasting*) berdasarkan performa model pada data uji (*test set*)")
 
 cv_df = None
 
 # --- Sidebar: semua kontrol di sini ---
 with st.sidebar:
-    st.markdown("### :material/tune: Settings")
+    st.markdown("### :material/folder_open: Dataset")
 
     # Sumber data
     data_source = st.radio(
@@ -42,7 +42,10 @@ with st.sidebar:
             st.session_state['cv_loaded'] = True
         except FileNotFoundError:
             st.error("File contoh dataset tidak ditemukan di folder data/")
+    
+    st.divider()
 
+    st.markdown("#### :material/settings: Others")
     if cv_df is not None:
         # Pilih unique_id
         unique_ids = cv_df['unique_id'].unique()

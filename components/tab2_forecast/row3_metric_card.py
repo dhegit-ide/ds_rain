@@ -39,23 +39,23 @@ def render(cv_df):
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
         with st.container(border=True, gap="xxsmall"):
-            st.metric(label="MAE (_lowest_)", value=f"{best_mae_val:.2f}", help="**Mean Absolute Error (MAE)** merupakan rata-rata selisih absolut antara nilai aktual dan prediksi. Metrik ini tidak rentan terhadap nilai ekstrem (outlier)")
+            st.metric(label=r"$MAE$ (_lowest_)", value=f"{best_mae_val:.2f}", help=r"**Mean Absolute Error ($MAE$)** merupakan rata-rata selisih absolut antara nilai aktual dan prediksi. Metrik ini tidak rentan terhadap nilai ekstrem (outlier)")
             st.write(f":blue-badge[{best_mae_model}]")
     with col2:
         with st.container(border=True, gap="xxsmall"):
-            st.metric(label="RMSE (_lowest_)", value=f"{best_rmse_val:.2f}", help="**Root Mean Squared Error (RMSE)** merupakan akar dari rata-rata kuadrat selisih antara nilai aktual dan prediksi. Metrik ini menggunakan skala asli data meskipun tetap memberikan bobot lebih besar pada kesalahan yang lebih besar (outlier)")
+            st.metric(label=r"$RMSE$ (_lowest_)", value=f"{best_rmse_val:.2f}", help=r"**Root Mean Squared Error ($RMSE$)** merupakan akar dari rata-rata kuadrat selisih antara nilai aktual dan prediksi. Metrik ini menggunakan skala asli data meskipun tetap memberikan bobot lebih besar pada kesalahan yang lebih besar (outlier)")
             st.write(f":blue-badge[{best_rmse_model}]")
     with col3:
         with st.container(border=True, gap="xxsmall"):
-            st.metric(label="MSE (_lowest_)", value=f"{best_mse_val:.2f}", help="**Root Mean Squared Error (RMSE)** merupakan akar dari rata-rata kuadrat selisih antara nilai aktual dan prediksi. Metrik ini memberikan bobot lebih besar pada kesalahan yang lebih besar (outlier)")
+            st.metric(label=r"$MSE$ (_lowest_)", value=f"{best_mse_val:.2f}", help=r"**Mean Squared Error ($MSE$)** merupakan rata-rata dari kuadrat selisih antara nilai aktual dan prediksi. Metrik ini memberikan bobot lebih besar pada kesalahan yang lebih besar (outlier)")
             st.write(f":blue-badge[{best_mse_model}]")
     with col4:
         with st.container(border=True, gap="xxsmall"):
-            st.metric(label="sMAPE (_lowest_)", value=f"{best_smape_val * 100:.1f}%" if best_smape_val <= 1 else f"{best_smape_val:.2f}%", help="**Symmetric Mean Absolute Percentage Error (sMAPE)** merupakan versi simetris dari MAPE. Metrik ini mengukur persentase kesalahan relatif yang dinormalisasi oleh rata-rata nilai aktual dan prediksi, sehingga lebih stabil saat nilai aktual mendekati nol")
+            st.metric(label=r"$sMAPE$ (_lowest_)", value=f"{best_smape_val * 100:.1f}%" if best_smape_val <= 1 else f"{best_smape_val:.2f}%", help=r"**Symmetric Mean Absolute Percentage Error ($sMAPE$)** merupakan versi simetris dari MAPE. Metrik ini mengukur persentase kesalahan relatif yang dinormalisasi oleh rata-rata nilai aktual dan prediksi, sehingga lebih stabil saat nilai aktual mendekati nol")
             st.write(f":blue-badge[{best_smape_model}]")
     with col5:
         with st.container(border=True, gap="xxsmall"):
-            st.metric(label="R2 (_highest_)", value=f"{best_r2_val:.2f}", help="**Coefficient of Determination (R²)** mengukur proporsi varians dalam variabel dependen yang dapat diprediksi dari variabel independen. Nilai R² berkisar antara 0 hingga 1, di mana nilai yang lebih tinggi menunjukkan kecocokan model yang lebih baik dengan data")
+            st.metric(label=r"$R^2$ (_highest_)", value=f"{best_r2_val:.2f}", help=r"**Coefficient of Determination ($R^2$)** mengukur proporsi varians dalam variabel dependen yang dapat diprediksi dari variabel independen. Nilai $R^2$ berkisar antara 0 hingga 1, di mana nilai yang lebih tinggi menunjukkan kecocokan model yang lebih baik dengan data")
             st.write(f":blue-badge[{best_r2_model}]")
 
 

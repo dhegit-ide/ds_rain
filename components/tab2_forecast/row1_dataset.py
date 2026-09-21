@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 
 def render(cv_df):
-    with st.expander(":material/table_view: Dataset Peramalan", expanded=True):
+    st.divider()
+    with st.expander(":material/table_view: Lihat Sampel Data Peramalan", expanded=True):
         st.dataframe(cv_df, use_container_width=True)
         
         # Pastikan kolom 'ds' berformat datetime

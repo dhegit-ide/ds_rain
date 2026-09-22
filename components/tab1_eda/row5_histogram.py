@@ -9,6 +9,10 @@ def render(df):
     st.subheader(":material/candlestick_chart: Distribusi Histogram", help="Distribusi histogram digunakan untuk menganalisis distribusi frekuensi dan pola penyebaran data berdasarkan interval nilai tertentu")
     
     target_column = st.session_state.get("target_column", None)
+
+    st.caption(f":green-badge[Target kolom: {target_column}]")
+    st.caption(":material/info: Gunakan kontrol di sidebar untuk memilih Target Kolom")
+    
     col1, col2 = st.columns(2)
     
     with col1:

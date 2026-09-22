@@ -49,5 +49,5 @@ def render(df):
 
     with col4:
         with st.container(border=True, gap="xxsmall"):
-            st.metric(label="Kelengkapan Data", value=f"{completeness:.1f}%")
+            st.metric(label="Kelengkapan Data", value=f"{round(completeness, 3):g}%")
             st.write(f":blue-badge[{missing_cells} sel nilai hilang]")

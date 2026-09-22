@@ -5,6 +5,10 @@ def render(df):
     st.subheader(":material/candlestick_chart: Distribusi Boxplot", help="Distribusi boxplot digunakan untuk menganalisis tingkat persebaran yang terlihat dari median, rentang, kuartil, serta mendeteksi outlier")
 
     target_column = st.session_state.get("target_column", None)
+
+    st.caption(f":green-badge[Target kolom: {target_column}]")
+    st.caption(":material/info: Gunakan kontrol di sidebar untuk memilih Target Kolom")
+
     col1, col2 = st.columns(2)
     
     with col1:

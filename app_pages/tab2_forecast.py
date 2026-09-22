@@ -14,7 +14,7 @@ cv_df = None
 
 # --- Sidebar: semua kontrol di sini ---
 with st.sidebar:
-    st.markdown("### :material/folder_open: Dataset")
+    st.markdown("### :material/folder_open: Dataset", help="Dataset hasil cross validation harus memiliki kolom `unique_id`, `ds`, `cutoff`, `y`, dan minimal satu kolom tambahan sebagai hasil prediksi.",)
 
     # Sumber data
     data_source = st.radio(

@@ -20,7 +20,7 @@ df = None
 
 # --- Sidebar: semua kontrol di sini ---
 with st.sidebar:
-    st.markdown("### :material/folder_open: Dataset")
+    st.markdown("### :material/folder_open: Dataset", help="Dataset harus memiliki kolom `unique_id`, `ds`, dan minimal satu `kolom tambahan numerik` yang akan dijadikan target variabel",)
 
     # Sumber data
     data_source = st.radio(

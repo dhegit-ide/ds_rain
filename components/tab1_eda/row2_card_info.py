@@ -3,7 +3,7 @@ import pandas as pd
 from utils.detect_freq import detect_and_summary
 
 def render(df):
-    st.subheader(":material/dashboard: Tinjauan Utama Dataset")
+    st.subheader(":material/dashboard: Karakteristik Dataset")
     if not pd.api.types.is_datetime64_any_dtype(df['ds']):
         df['ds'] = pd.to_datetime(df['ds'], errors='coerce')
     
